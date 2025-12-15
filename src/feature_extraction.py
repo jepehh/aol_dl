@@ -1,7 +1,7 @@
 import os
 import dlib
 import numpy as np
-from src.config import DATA_PREPROCESSED, SHAPE_PREDICTOR, FACE_REC_MODEL
+from src.config import DATA_PROCESSED, SHAPE_PREDICTOR, FACE_REC_MODEL
 
 shape_predictor = None
 face_rec_model = None
@@ -18,8 +18,8 @@ def extract_embeddings():
     embeddings = []
     labels = []
     
-    for person_name in os.listdir(DATA_PREPROCESSED):
-        person_path = os.path.join(DATA_PREPROCESSED, person_name)
+    for person_name in os.listdir(DATA_PROCESSED):
+        person_path = os.path.join(DATA_PROCESSED, person_name)
         if not os.path.isdir(person_path):
             continue
         

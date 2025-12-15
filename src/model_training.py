@@ -1,11 +1,14 @@
+import os
 import numpy as np
 import tensorflow as tf
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
-from src.config import TEST_SIZE, RANDOM_STATE, EPOCHS, BATCH_SIZE, NEURAL_NET_MODEL, LABEL_ENCODER
+from src.config import TEST_SIZE, RANDOM_STATE, EPOCHS, BATCH_SIZE, NEURAL_NET_MODEL, LABEL_ENCODER, OUTPUTS_MODELS_DIR
 from src.feature_extraction import extract_embeddings
 
 def train_model():
+    os.makedirs(OUTPUTS_MODELS_DIR, exist_ok=True)
+    
     embeddings, labels = extract_embeddings()
     
     label_encoder = LabelEncoder()
@@ -38,5 +41,6 @@ def train_model():
     )
     
     model.save(NEURAL_NET_MODEL)
+    print(f"Model saved to {NEURAL_NET_MODEL}")
     
     return history, X_test, y_test, label_encoder

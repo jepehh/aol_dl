@@ -1,8 +1,8 @@
+import os
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix, classification_report, ConfusionMatrixDisplay
 from src.config import PLOTS_DIR
-import os
 
 def evaluate_model(history, model, X_test, y_test, label_encoder):
     os.makedirs(PLOTS_DIR, exist_ok=True)

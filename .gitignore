@@ -5,12 +5,36 @@ __pycache__/
 .Python
 env/
 venv/
+*.egg-info/
+
+# Models (too large for git)
 *.h5
 *.npy
 *.dat
+
+# Data
 data/raw/*
-data/preprocessed/*
-outputs/
-attendance_records/
+data/processed/*
+!data/README.md
+
+# Outputs
+outputs/models/*
+outputs/plots/*
+outputs/attendance/*
+!outputs/.gitkeep
+
+# OS
 .DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
 *.log
+
+# Environment
+.env

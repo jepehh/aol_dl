@@ -8,12 +8,12 @@ from src.model_evaluation import evaluate_model
 from src.feature_extraction import extract_embeddings
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
-from src.config import TEST_SIZE, RANDOM_STATE, LABEL_ENCODER
+from src.config import TEST_SIZE, RANDOM_STATE, LABEL_ENCODER, NEURAL_NET_MODEL
 
 if __name__ == "__main__":
     print("Loading model and data...")
     
-    model = tf.keras.models.load_model("models/neural_net_model.h5")
+    model = tf.keras.models.load_model(NEURAL_NET_MODEL)
     label_encoder_classes = np.load(LABEL_ENCODER, allow_pickle=True)
     label_encoder = LabelEncoder()
     label_encoder.classes_ = label_encoder_classes

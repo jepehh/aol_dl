@@ -1,19 +1,19 @@
 import os
 import cv2
 import dlib
-from src.config import DATA_RAW, DATA_PREPROCESSED, SHAPE_PREDICTOR
+from src.config import DATA_RAW, DATA_PROCESSED
 
 detector = dlib.get_frontal_face_detector()
 
 def preprocess_dataset():
-    os.makedirs(DATA_PREPROCESSED, exist_ok=True)
+    os.makedirs(DATA_PROCESSED, exist_ok=True)
     
     for person_name in os.listdir(DATA_RAW):
         person_path = os.path.join(DATA_RAW, person_name)
         if not os.path.isdir(person_path):
             continue
         
-        output_person_path = os.path.join(DATA_PREPROCESSED, person_name)
+        output_person_path = os.path.join(DATA_PROCESSED, person_name)
         os.makedirs(output_person_path, exist_ok=True)
         
         for img_name in os.listdir(person_path):
@@ -37,4 +37,4 @@ def preprocess_dataset():
                 output_path = os.path.join(output_person_path, f"{os.path.splitext(img_name)[0]}_{i}.jpg")
                 cv2.imwrite(output_path, face_crop)
     
-    print(f"Preprocessing complete. Saved to {DATA_PREPROCESSED}")
+    print(f"Preprocessing complete. Saved to {DATA_PROCESSED}")

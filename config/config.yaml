@@ -1,0 +1,27 @@
+data:
+  raw: "data/raw"
+  processed: "data/processed"
+
+models:
+  pretrained_dir: "models"
+  shape_predictor: "models/shape_predictor_68_face_landmarks.dat"
+  face_recognition: "models/dlib_face_recognition_resnet_model_v1.dat"
+  
+outputs:
+  base_dir: "outputs"
+  models_dir: "outputs/models"
+  plots_dir: "outputs/plots"
+  attendance_dir: "outputs/attendance"
+  neural_net_model: "outputs/models/neural_net_model.h5"
+  label_encoder: "outputs/models/classes.npy"
+
+training:
+  confidence_threshold: 0.6
+  test_size: 0.2
+  random_state: 42
+  epochs: 100
+  batch_size: 16
+
+deployment:
+  streamlit_port: 8501
+  ngrok_enabled: false
