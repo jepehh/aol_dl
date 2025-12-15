@@ -52,7 +52,7 @@ with col2:
         
         if records:
             df = pd.DataFrame(records)
-            st.dataframe(df, use_container_width=True, hide_index=True)
+            st.dataframe(df, width='stretch', hide_index=True)
             
             st.divider()
             

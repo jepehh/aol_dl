@@ -21,7 +21,7 @@ def recognize_face(frame):
         load_models()
     
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    faces = detector(gray)
+    faces = detector(gray, 0)
     
     if len(faces) == 0:
         return None, 0.0, None

@@ -25,6 +25,7 @@ col1, col2 = st.columns([2, 1])
 
 with col1:
     st.subheader("Camera Feed")
+    st.info("💡 **Tip:** For best results, ensure good lighting and face is centered. If detection fails, retake photo.")
     camera = st.camera_input("Take a photo")
     
     if camera is not None:
@@ -41,7 +42,7 @@ with col1:
             st.session_state['current_name'] = None
             st.session_state['current_confidence'] = 0.0
         
-        st.image(cv2.cvtColor(cv_img, cv2.COLOR_BGR2RGB), channels="RGB", use_column_width=True)
+        st.image(cv2.cvtColor(cv_img, cv2.COLOR_BGR2RGB), channels="RGB", width='stretch')
 
 with col2:
     st.subheader("Attendance Status")

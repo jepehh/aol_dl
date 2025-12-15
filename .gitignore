@@ -7,10 +7,10 @@ env/
 venv/
 *.egg-info/
 
-# Models (too large for git)
-*.h5
-*.npy
-*.dat
+# Models (if they are too large for git)
+# *.h5
+# *.npy
+# *.dat
 
 # Data
 data/raw/*
