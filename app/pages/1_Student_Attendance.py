@@ -1,25 +1,25 @@
 import streamlit as st
 import cv2
-from PIL import Image
 import numpy as np
+from PIL import Image
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 
 from src.face_recognition import recognize_face
-from app.utils.network_utils import get_local_ip, is_same_network
 from app.utils.camera_utils import draw_bbox_and_label
 from app.utils.attendance_db import mark_attendance, check_already_marked
 
 st.set_page_config(page_title="Student Attendance", layout="wide")
 st.title("📸 Mark Your Attendance")
 
+st.warning("⚠️ Demo Mode: Network verification is disabled")
+
 if 'session_active' not in st.session_state or not st.session_state.session_active:
     st.error("No active session. Please wait for lecturer to start the session.")
     st.stop()
 
 session_file = st.session_state.get('session_file')
-lecturer_ip = st.session_state.get('lecturer_ip')
 
 col1, col2 = st.columns([2, 1])
 
@@ -51,11 +51,7 @@ with col2:
         st.info(f"Confidence: {st.session_state.current_confidence:.2%}")
         
         if st.button("✅ Verify Attendance", type="primary", use_container_width=True):
-            student_ip = get_local_ip()
-            
-            if not is_same_network(student_ip, lecturer_ip):
-                st.error("❌ You must be on the same network as the lecturer!")
-            elif check_already_marked(session_file, st.session_state.current_name):
+            if check_already_marked(session_file, st.session_state.current_name):
                 st.warning("⚠️ You have already marked attendance!")
             elif st.session_state.current_confidence < 0.6:
                 st.error("❌ Face not clearly recognized. Please retake photo.")
@@ -64,8 +60,8 @@ with col2:
                     session_file, 
                     st.session_state.current_name, 
                     st.session_state.current_confidence, 
-                    student_ip, 
-                    lecturer_ip
+                    "N/A (Demo Mode)",
+                    "N/A (Demo Mode)"
                 )
                 st.success("✅ Attendance marked successfully!")
                 st.balloons()
@@ -73,4 +69,4 @@ with col2:
         st.warning("No face detected. Please take a photo.")
 
 st.divider()
-st.caption(f"Your IP: {get_local_ip()} | Lecturer IP: {lecturer_ip}")
+st.caption("Demo Mode - Network verification disabled for cloud deployment")
