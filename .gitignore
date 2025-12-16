@@ -38,3 +38,9 @@ Thumbs.db
 
 # Environment
 .env
+
+env/
+venv/
+venv_*/
+*.pyc
+__pycache__/

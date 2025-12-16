@@ -1,11 +1,9 @@
 streamlit
-opencv-python
-dlib
-tensorflow
+opencv-python-headless
 numpy
 pandas
 scikit-learn
 matplotlib
 Pillow
-pyngrok
+tensorflow
 pyyaml
