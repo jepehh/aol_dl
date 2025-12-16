@@ -20,8 +20,15 @@ def recognize_face(frame):
     if model is None or label_encoder is None:
         load_models()
     
+    if frame.dtype != np.uint8:
+        frame = frame.astype(np.uint8)
+    frame = np.ascontiguousarray(frame)
+    
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    faces = detector(gray, 0)
+    
+    gray = np.ascontiguousarray(gray, dtype=np.uint8)
+    
+    faces = detector(gray, 1)
     
     if len(faces) == 0:
         return None, 0.0, None

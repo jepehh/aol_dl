@@ -25,7 +25,7 @@ col1, col2 = st.columns([2, 1])
 
 with col1:
     st.subheader("Camera Feed")
-    st.info("💡 **Tip:** For best results, ensure good lighting and face is centered. If detection fails, retake photo.")
+    st.info("💡 **Tip:** Ensure good lighting and face is centered. Retake if detection fails.")
     camera = st.camera_input("Take a photo")
     
     if camera is not None:
